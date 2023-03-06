@@ -48,12 +48,24 @@ const Chart: React.FC<Props> = ({ chartData, timeStep }) => {
           callback: function (xLabel, index) {
             const currentItem = chartData[xLabel as number];
             const currentDate = currentItem.Date;
+            const formatted = timeStepsMap[timeStep].format(currentDate);
+
             if (timeStep === TimeSteps.OneWeek) {
-              return timeStepsMap[timeStep].format(currentDate);
+              return formatted;
             }
-            return index % 3 === 0
-              ? this.getLabelForValue(xLabel as number)
-              : "";
+
+            if (timeStep === TimeSteps.OneMinute && index % 15 !== 0) {
+              return "";
+            }
+
+            if (
+              timeStep === TimeSteps.FiveMinutes &&
+              dayjs(currentDate).get("minutes") % 20 !== 0
+            ) {
+              return "";
+            }
+
+            return formatted;
           },
         },
       },
