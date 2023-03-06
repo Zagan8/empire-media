@@ -15,12 +15,14 @@ const StockInfo = () => {
         isPositive ? "positive" : "negative"
       );
 
-      setTimeout(() => {
+      let timer = setTimeout(() => {
         cardRef.current?.classList.remove(
           "active",
           isPositive ? "positive" : "negative"
         );
       }, 1000);
+
+      return () => clearTimeout(timer);
     }
   }, [message, isReady, isPositive]);
 
@@ -43,9 +45,9 @@ const StockInfo = () => {
             precision={2}
             prefix={
               isPositiveChange ? (
-                <ArrowUpOutlined style={{ color: "green" }} />
+                <ArrowUpOutlined className="positive" />
               ) : (
-                <ArrowDownOutlined style={{ color: "red" }} />
+                <ArrowDownOutlined className="negative" />
               )
             }
             suffix=""
@@ -58,7 +60,6 @@ const StockInfo = () => {
             precision={2}
             prefix={isPositiveChange ? "+" : "-"}
             valueStyle={{ color: isPositiveChange ? "green" : "red" }}
-            // prefix={<ArrowDownOutlined />}
             suffix={`(${isPositiveChange ? "+" : "-"}${percentChange.toFixed(
               2
             )}%)`}

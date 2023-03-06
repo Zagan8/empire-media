@@ -7,7 +7,18 @@
 
 body {
   height: 100vh;
-  overflow: hidden;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.home-card {
+  max-height: 850px;
 }
 
 .active {

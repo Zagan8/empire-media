@@ -57,8 +57,8 @@ const columns: ColumnsType<ChartDataItem> = [
   },
 ];
 
-const calculateDiff = (newValue: number, oldValue: number) => {
-  return (((newValue - oldValue) / oldValue) * 100).toFixed(2) + "%";
+const calculateDiff = (newPrice: number, oldPrice: number) => {
+  return (((newPrice - oldPrice) / oldPrice) * 100).toFixed(2) + "%";
 };
 
 interface Props {

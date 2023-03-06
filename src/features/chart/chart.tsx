@@ -83,7 +83,7 @@ const Chart: React.FC<Props> = ({ chartData, timeStep }) => {
     ],
   };
 
-  // @ts-ignore
+  //@ts-ignore
   return <Line height={500} options={options} data={data} />;
 };
 

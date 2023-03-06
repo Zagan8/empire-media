@@ -5,6 +5,7 @@ import Chart from "../chart/chart";
 import HistoryTable from "../history/history";
 import StockService, { ChartDataItem } from "../../services/stock-service";
 import { TimeSteps, timeStepsMap } from "../../helpers/time-steps-map";
+import StockInfo from "../stock-info/stock-Info";
 
 const HomePage: React.FC = () => {
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
@@ -59,18 +60,17 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <Card
-      style={{
-        maxHeight: "850px",
-      }}
-    >
-      <Tabs
-        defaultValue={timeStep}
-        items={timeStepOptions}
-        onChange={(e) => handleTimeStepChange(e as TimeSteps)}
-      />
-      <Tabs defaultActiveKey="1" items={items} />
-    </Card>
+    <>
+      <StockInfo />
+      <Card className="home-card">
+        <Tabs
+          defaultValue={timeStep}
+          items={timeStepOptions}
+          onChange={(e) => handleTimeStepChange(e as TimeSteps)}
+        />
+        <Tabs defaultActiveKey="1" items={items} />
+      </Card>
+    </>
   );
 };
 
