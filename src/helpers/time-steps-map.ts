@@ -5,48 +5,40 @@ export enum TimeSteps {
   OneHour = "1-hour",
   OneWeek = "1-week",
 }
+
+const lastDay = dayjs().add(-1, "day").format("MM/DD/YYYY");
+const today = dayjs().format("MM/DD/YYYY");
+
 export const timeStepsMap = {
   [TimeSteps.OneMinute]: {
-    timeFrame:
-      dayjs().add(-3, "day").format("MM/DD/YYYY") +
-      "&EndTime=" +
-      dayjs().format("MM/DD/YYYY") +
-      "%" +
-      dayjs().format("YYYY") +
-      ":59",
+    timeFrame: {
+      start: lastDay,
+      end: today,
+    },
     period: "1",
     format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.FiveMinutes]: {
-    timeFrame:
-      dayjs().add(-3, "day").format("MM/DD/YYYY") +
-      "&EndTime=" +
-      dayjs().format("MM/DD/YYYY") +
-      "%" +
-      dayjs().format("YYYY") +
-      ":59",
+    timeFrame: {
+      start: lastDay,
+      end: today,
+    },
     period: "5",
     format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.OneHour]: {
-    timeFrame:
-      dayjs().add(-3, "day").format("MM/DD/YYYY") +
-      "&EndTime=" +
-      dayjs().format("MM/DD/YYYY") +
-      "%" +
-      dayjs().format("YYYY") +
-      ":59",
+    timeFrame: {
+      start: lastDay,
+      end: today,
+    },
     period: "60",
     format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.OneWeek]: {
-    timeFrame:
-      dayjs().add(-30, "day").format("MM/DD/YYYY") +
-      "&EndTime=" +
-      dayjs().format("MM/DD/YYYY") +
-      "%" +
-      dayjs().format("YYYY") +
-      ":59",
+    timeFrame: {
+      start: dayjs().add(-30, "day").format("MM/DD/YYYY"),
+      end: today,
+    },
     period: "10080",
     format: (date: string) => dayjs(date).format("MM/DD/YYYY"),
   },

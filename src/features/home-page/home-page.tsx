@@ -5,7 +5,6 @@ import Chart from "../chart/chart";
 import HistoryTable from "../history/history";
 import StockService, { ChartDataItem } from "../../services/stock-service";
 import { TimeSteps, timeStepsMap } from "../../helpers/time-steps-map";
-import StockInfo from "../stock-info/stock-Info";
 
 const HomePage: React.FC = () => {
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
@@ -16,9 +15,12 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     const init = async () => {
+      const timeStepItem = timeStepsMap[timeStep as TimeSteps];
+
       const chartData = await StockService.getStocks(
-        timeStepsMap[timeStep].period,
-        timeStepsMap[timeStep].timeFrame
+        timeStepItem.period,
+        timeStepItem.timeFrame.start,
+        timeStepItem.timeFrame.end
       );
 
       setChartData(chartData);
@@ -61,7 +63,6 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <StockInfo />
       <Card className="home-card">
         <Tabs
           defaultValue={timeStep}
