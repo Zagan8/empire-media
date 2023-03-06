@@ -15,6 +15,7 @@ export const timeStepsMap = {
       dayjs().format("YYYY") +
       ":59",
     period: "1",
+    format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.FiveMinutes]: {
     timeFrame:
@@ -25,6 +26,7 @@ export const timeStepsMap = {
       dayjs().format("YYYY") +
       ":59",
     period: "5",
+    format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.OneHour]: {
     timeFrame:
@@ -35,6 +37,7 @@ export const timeStepsMap = {
       dayjs().format("YYYY") +
       ":59",
     period: "60",
+    format: (date: string) => dayjs(date).format("HH:mm"),
   },
   [TimeSteps.OneWeek]: {
     timeFrame:
@@ -45,5 +48,6 @@ export const timeStepsMap = {
       dayjs().format("YYYY") +
       ":59",
     period: "10080",
+    format: (date: string) => dayjs(date).format("MM/DD/YYYY"),
   },
 };

@@ -22,7 +22,7 @@ const StockInfo = () => {
         );
       }, 1000);
     }
-  }, [message]);
+  }, [message, isReady, isPositive]);
 
   if (!isReady || !message) {
     return <Skeleton active={true} />;

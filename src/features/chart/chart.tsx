@@ -13,7 +13,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
-import { TimeSteps } from "../../helpers/time-steps-map";
+import { TimeSteps, timeStepsMap } from "../../helpers/time-steps-map";
 import { ChartDataItem } from "../../services/stock-service";
 
 ChartJS.register(
@@ -45,23 +45,15 @@ const Chart: React.FC<Props> = ({ chartData, timeStep }) => {
     scales: {
       x: {
         ticks: {
-          // For a category axis, the val is the index so the lookup via getLabelForValue is needed
-          callback: function (val, index) {
-            const currentItem = chartData[val as number];
+          callback: function (xLabel, index) {
+            const currentItem = chartData[xLabel as number];
             const currentDate = currentItem.Date;
-
-            // if (
-            //   dayjs(currentDate).get("minutes") % 30 === 0 ||
-            //   dayjs(currentDate).get("minutes") === 0
-            // ) {
-            //   return dayjs(currentDate).format("hh:mm");
-            // }
-            if (timeStep !== TimeSteps.OneMinute) {
-              //@ts-ignore
-              return index % 2 === 0 ? this.getLabelForValue(val) : "";
+            if (timeStep === TimeSteps.OneWeek) {
+              return timeStepsMap[timeStep].format(currentDate);
             }
-            //dayjs(currentDate).format("hh:mm")
-            return val;
+            return index % 3 === 0
+              ? this.getLabelForValue(xLabel as number)
+              : "";
           },
         },
       },
