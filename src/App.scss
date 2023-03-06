@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  background-color: #e3e3e3;
+  padding: 25px;
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.active {
+  &.positive {
+    .stock-price {
+      .ant-statistic-content-value {
+        transition: all;
+        background-color: lightgreen;
+        opacity: 0.5;
+      }
+    }
+  }
+
+   &.negative {
+     .stock-price {
+       .ant-statistic-content-value {
+         transition: all;
+         background-color: lightcoral;
+         opacity: 0.5;
+       }
+     }
+   }
+}

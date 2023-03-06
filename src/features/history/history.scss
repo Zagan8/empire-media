@@ -1,0 +1,13 @@
+.history-table {
+    max-height: 700px;
+  .change-percent {
+    &.positive {
+      color: green;
+    }
+
+    &.negative {
+      color: red;
+    }
+  }
+
+}
